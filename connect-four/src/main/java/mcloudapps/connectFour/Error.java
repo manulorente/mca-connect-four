@@ -7,7 +7,6 @@ public enum Error {
 	WRONG_COLUMN("The column is not valid "),
 	COLUMN_FULL("The column is full"),
     NOT_TOKEN("Run out of tokens"),
-    WRONG_COLOR("Wrong color"),
 	NULL;
 
 	private String message;

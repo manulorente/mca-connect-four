@@ -30,7 +30,7 @@ public class ConnectFour
     }
 
     private boolean isGameOver() {
-        return (this.board.isFull() || this.turn.getWinner() != null);
+        return (this.board.isBoardFull() || this.turn.getWinner() != null);
     }
 
     private boolean isResumedGame() {

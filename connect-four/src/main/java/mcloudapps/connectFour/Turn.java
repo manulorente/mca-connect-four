@@ -9,7 +9,6 @@ public class Turn {
 
     public Turn(Board board) {
         assert board != null;
-        
         this.board = board;
 		this.players = new Player[Turn.NUMBER_PLAYERS];
 		this.reset();
@@ -22,13 +21,17 @@ public class Turn {
         this.currentPlayer = this.randomTurn();
     }
 
-    private int randomTurn() {
-        return (int) (Math.random() * Turn.NUMBER_PLAYERS);
-    }
-
     public void play(){
         this.currentPlayer = this.nextPlayer();
         this.players[this.currentPlayer].play();
+    }
+
+    public Player getPlayer() {
+        return this.players[this.currentPlayer];
+    }
+    
+    private int randomTurn() {
+        return (int) (Math.random() * Turn.NUMBER_PLAYERS);
     }
 
     private int nextPlayer() {
@@ -37,8 +40,8 @@ public class Turn {
 
     public Player getWinner(){
         Player winner = null;
-        for (int i = 0; i < Turn.NUMBER_PLAYERS; i++) {
-            if (!this.players[i].isTokenAvailable()) { break;}
+        for (int i = 0; i < players.length; i++) {
+            if (!this.players[i].isTokenAvailable()) {break;}
             if (this.isWinner(this.players[i].getColor())) {
                 winner = this.players[i];
             }
@@ -47,10 +50,10 @@ public class Turn {
     }
 
     public void writeResult(){
-        if (this.board.isFull() || this.getWinner() == null) {
+        if (this.board.isBoardFull() || this.getWinner() == null) {
             Message.RESULT_DRAW.writeln();
         } else {
-            Message.RESULT_WIN.writeln(this.players[this.currentPlayer].getColor().toString());
+            Message.RESULT_WIN.writeln(this.getWinner().getColor().toString());
         }
         Message.HORIZONTAL_LINE.writeln();
     }
@@ -62,8 +65,8 @@ public class Turn {
     private boolean isWinnerHorizontal(Color color) {
         for (int row = 0; row < this.board.getNumberOfRows(); row++) {
             for (int col = 0; col < this.board.getNumberOfColumns() - 3; col++) {
-                if (this.board.getTokenColor(row, col) == color && this.board.getTokenColor(row, col + 1) == color && this.board.getTokenColor(row, col + 2)== color
-                        && this.board.getTokenColor(row, col + 3) == color) {
+                if (this.board.getColor(row, col) == color && this.board.getColor(row, col + 1) == color && this.board.getColor(row, col + 2)== color
+                        && this.board.getColor(row, col + 3) == color) {
                     return true;
                 }
             }
@@ -74,8 +77,8 @@ public class Turn {
     private boolean isWinnerVertical(Color color) {
         for (int row = 0; row < this.board.getNumberOfRows() - 3; row++) {
             for (int col = 0; col < this.board.getNumberOfColumns(); col++) {
-                if (this.board.getTokenColor(row, col) == color && this.board.getTokenColor(row + 1, col) == color && this.board.getTokenColor(row + 2, col) == color
-                        && this.board.getTokenColor(row + 3, col) == color) {
+                if (this.board.getColor(row, col) == color && this.board.getColor(row + 1, col) == color && this.board.getColor(row + 2, col) == color
+                        && this.board.getColor(row + 3, col) == color) {
                     return true;
                 }
             }
@@ -90,8 +93,8 @@ public class Turn {
     private boolean isWinnerDiagonalLeft(Color color) {
         for (int row = 0; row < this.board.getNumberOfRows() - 3; row++) {
             for (int col = 0; col < this.board.getNumberOfColumns() - 3; col++) {
-                if (this.board.getTokenColor(row, col) == color && this.board.getTokenColor(row + 1, col + 1) == color && this.board.getTokenColor(row + 2, col + 2) == color
-                        && this.board.getTokenColor(row + 3, col + 3) == color) {
+                if (this.board.getColor(row, col) == color && this.board.getColor(row + 1, col + 1) == color && this.board.getColor(row + 2, col + 2) == color
+                        && this.board.getColor(row + 3, col + 3) == color) {
                     return true;
                 }
             }
@@ -102,14 +105,12 @@ public class Turn {
     private boolean isWinnerDiagonalRight(Color color) {
         for (int row = 0; row < this.board.getNumberOfRows() - 3; row++) {
             for (int col = 3; col < this.board.getNumberOfColumns(); col++) {
-                if (this.board.getTokenColor(row, col) == color && this.board.getTokenColor(row + 1, col - 1) == color && this.board.getTokenColor(row + 2, col - 2) == color
-                        && this.board.getTokenColor(row + 3, col - 3) == color) {
+                if (this.board.getColor(row, col) == color && this.board.getColor(row + 1, col - 1) == color && this.board.getColor(row + 2, col - 2) == color
+                        && this.board.getColor(row + 3, col - 3) == color) {
                     return true;
                 }
             }
         }
         return false;
     }
-
-
 }

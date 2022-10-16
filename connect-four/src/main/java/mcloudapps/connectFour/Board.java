@@ -15,10 +15,8 @@ public class Board {
         this.reset();
     }
 
-    public Board(int tokens) {
-        this.board = new Color[Board.NROWS][Board.NCOLS];
-        this.tokens = tokens;
-        this.reset();
+    public int getNumberOfTokens() {
+        return this.tokens;
     }
 
     public int getNumberOfRows() {
@@ -37,10 +35,6 @@ public class Board {
         }
     }
 
-    public int getNumberOfTokens() {
-            return this.tokens;
-        }
-
     public boolean isColumnValid(int columnIndex) {
         return columnIndex >= 1 && columnIndex <= Board.NCOLS;
     }
@@ -49,7 +43,7 @@ public class Board {
         return this.board[0][columnIndex-1] == Color.NONE;
     }
     
-    public boolean isFull() {
+    public boolean isBoardFull() {
         for (int col = 0; col < Board.NCOLS; col++) {
             if (this.board[0][col] == Color.NONE) {
                 return false;
@@ -63,6 +57,7 @@ public class Board {
     }
 
     public int getValidRow(int columnIndex) {
+        assert columnIndex >= 0 && columnIndex < Board.NCOLS;
         int row = Board.NROWS - 1;
         while (row >= 0 && this.board[row][columnIndex] != Color.NONE) {
             row--;
@@ -70,7 +65,7 @@ public class Board {
         return row;
     }
 
-    public Color getTokenColor(int row, int col) {
+    public Color getColor(int row, int col) {
         assert col >= 0 && col < Board.NCOLS;
         assert row >= 0 && row < Board.NROWS;
         return this.board[row][col];
@@ -81,12 +76,11 @@ public class Board {
         for (int row = 0; row < Board.NROWS; row++) {
             Message.VERTICAL_LINE.write();
             for (int col = 0; col < Board.NCOLS; col++) {
-                this.board[row][col].write();
+                getColor(row, col).write();
                 Message.VERTICAL_LINE.write();
             }
             Message.NEW_LINE.write();
         }
         Message.HORIZONTAL_LINE.writeln();
-
     }
 }
