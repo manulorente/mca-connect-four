@@ -1,4 +1,4 @@
-# Juego Conecta 4  
+# Juego Conecta4  
 
 ## Alumnos
 
@@ -7,12 +7,12 @@ Juan Ángel Garrido Lupiañez
   
 ## Evaluacion  
 
-1. Conoces cosas que no conocias -> 1.5/2.5p  
-2. Comprendes los conceptos (patrones, conocimiento, software) -> 2.5/2.5p  
-3. Leyendo el tictactoe identificas los conceptos enseñados en teoría -> 2/2.5p  
-4. Lo que yo creo que valdria la practica -> 2/2.5p  
+1. Conocer - conoces cosas que no conocias -> 1.5/2.5p  
+2. Comprender - comprendes los conceptos (patrones, conocimiento, software) -> 2.5/2.5p  
+3. Reconocer - leyendo el tictactoe identificas los conceptos enseñados en teoría -> 1/2.5p  
+4. Sintetizar - Lo que yo creo que valdria la practica -> 2/2.5p  
 
-## Justificación  
+## Justificación de la evaulación  
 
 ### Jerarquía y patrones  
 
