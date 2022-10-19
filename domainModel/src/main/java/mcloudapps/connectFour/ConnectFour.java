@@ -6,10 +6,12 @@ public class ConnectFour
 {
     private Board board;
     private Turn turn;
+    private Result result;
 
     public ConnectFour() {
         board = new Board();
         turn = new Turn(this.board);
+        result = new Result(this.board);
     }
 
     public void play() {
@@ -25,12 +27,8 @@ public class ConnectFour
         do {
             this.turn.play();
             this.board.write();
-        } while (!this.isGameOver());
-        this.turn.writeResult();
-    }
-
-    private boolean isGameOver() {
-        return (this.board.isBoardFull() || this.turn.getWinner() != null);
+        } while (!this.result.isGameOver());
+        this.result.writeResult();
     }
 
     private boolean isResumedGame() {

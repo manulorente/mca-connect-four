@@ -32,13 +32,18 @@ public class Player {
             column = this.getColumn(Message.ENTER_COLUMN_TO_PUT, this.color);
             error = this.getPutTokenError(column, this.color);
         } while (!error.isNull());
-        this.board.putToken(column, this.color);
-        this.tokens--;
+        this.putToken(column);
     }
 
     private int getColumn(Message message, Color color) {
         int column = Console.getInstance().readInt(message.toString().replaceAll("#player", "" + color));
         return column;
+    }
+
+    public void putToken(int column)
+    {
+        this.board.putToken(column, this.color);
+        this.tokens--;
     }
 
     public Error getPutTokenError(int column, Color color) {
