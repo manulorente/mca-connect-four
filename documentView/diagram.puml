@@ -1,0 +1,112 @@
+@startuml ConnectFour
+
+title ConnectFour - Class Diagram
+
+
+package connectFour {
+  class ConnectFour
+}
+
+package connectFour.models{
+  class Board
+  class Game
+  class Player
+  class Turn
+  class Result
+}
+
+package connectFour.types{
+  enum Color
+  enum Error
+}
+
+package connectFour.views{
+  abstract WithGameView
+  class BoardView
+  class ErrorView
+  class PlayView
+  class PlayerView
+  class ResultView
+  class ResumeView
+  class StartView
+  class View
+  enum Message
+}
+
+package utils.views{
+  class Console
+  class YesNoDialog
+}
+
+ConnectFour *-down-> Game
+ConnectFour *-down-> View
+
+Game *-down-> Board
+Game *-down-> Turn
+Game *-down-> Result
+Game .down.> Color
+Game .down.> Error
+
+Board .down.> Color
+Board *-down->"2" Player
+
+Player .down.> Color
+Player .down.> Error
+
+Result .down.> Color
+Result <-down-* Board
+
+Turn <-down-* Board
+Turn .down.> Color
+Turn .down.> Error
+Turn *-down->"2" Player
+
+Color .down.> Console
+
+View -up-|> WithGameView
+View *-down-> StartView
+View *-down-> PlayView
+View *-down-> ResumeView
+View *-left-> Game
+
+WithGameView *-down-> Game
+
+BoardView *-down-> Game
+BoardView .down.> Message
+
+ErrorView *-down-> Error
+ErrorView .down.> Console
+
+Message .down.> Console
+
+StartView -up-|> WithGameView
+StartView *-down-> Game
+StartView .down.> Message
+StartView .down.> BoardView
+
+PlayView -up-|> WithGameView
+PlayView *-down-> Game
+PlayView .down.> PlayerView
+PlayView .down.> BoardView
+PlayView .down.> ResultView
+
+ResumeView -up-|> WithGameView
+ResumeView *-down-> Game
+ResumeView .down.> Message
+ResumeView .down.> YesNoDialog
+
+ResultView -up-|> WithGameView
+ResultView *-down-> Game
+ResultView .down.> Message
+
+PlayerView *-down-> Game
+PlayerView .down.> Error
+PlayerView .down.> Color
+PlayerView .down.> Console
+
+Console *-up-> java.io.BufferedReader
+Console *-up-> java.io.InputStreamReader
+
+YesNoDialog .left.> Console
+
+@enduml

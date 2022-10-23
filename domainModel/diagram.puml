@@ -1,0 +1,56 @@
+@startuml ConnectFour
+
+title ConnectFour - Class Diagram
+
+
+package connectFour {
+  class ConnectFour {
+  }
+  
+  class Board
+  class Player
+  class Turn
+  class Result
+  enum Color
+  enum Error
+  enum Message
+}
+
+package utils{
+  class Console
+  class YesNoDialog
+}
+
+ConnectFour *-down-> Board
+ConnectFour *-down-> Turn
+ConnectFour *-down-> Result
+ConnectFour .down.> Message
+ConnectFour .down.> YesNoDialog
+
+Board .down.> Color
+Board .down.> Message
+Board *-down->"2" Player
+Board *-down-> Turn
+Board *-down-> Result
+
+Player .down.> Color
+Player .right.> Error
+Player .down.> Console
+
+Turn *-down->"2" Player
+
+Result .down.> Color
+Result .down.> Message
+
+Color .right.> Console
+
+Error .right.> Console
+
+Message .down.> Console
+
+Console *-up-> java.io.BufferedReader
+Console *-up-> java.io.InputStreamReader
+
+YesNoDialog .left.> Console
+
+@enduml
