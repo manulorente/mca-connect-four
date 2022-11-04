@@ -8,7 +8,8 @@ public enum Message {
 	VERTICAL_LINE(" | "),
     EMPTY(" "),
     NEW_LINE("\n"),
-	ENTER_COLUMN_TO_PUT("Player #player turn - Enter the column to put a token: "),
+	COLOR("#color"),
+	ENTER_COLUMN_TO_PUT("Player #player turn - Enter the column to put a token"),
 	RESULT_WIN("#player player: You win!!! :-)"), 
 	RESULT_DRAW("Nobody wins: Draw :/"), 
 	RESUME("Do you want to continue");
@@ -23,7 +24,12 @@ public enum Message {
 		Console.getInstance().write(this.message);
 	}
 
-	void write(String player) {
+	void writeColor(String color) {
+		assert this == Message.COLOR;
+		Console.getInstance().write(this.message.replaceAll("#color", color));
+	}
+
+	void writePlayer(String player) {
 		assert this == Message.RESULT_WIN;
 		Console.getInstance().write(this.message.replaceAll("#player", "" + player));
 	}    

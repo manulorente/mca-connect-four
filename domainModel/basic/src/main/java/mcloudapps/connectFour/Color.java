@@ -1,7 +1,5 @@
 package mcloudapps.connectFour;
 
-import mcloudapps.utils.Console;
-
 public enum Color {
     R, Y, NONE;
 
@@ -10,14 +8,6 @@ public enum Color {
 
 		return Color.values()[ordinal];
 	}
-
-    public void write() {
-		String string = this.name();
-		if (this.isNull()) {
-			string = " ";
-		}
-		Console.getInstance().write(string);        
-    }
 
 	boolean isNull() {
 		return this == Color.NONE;
