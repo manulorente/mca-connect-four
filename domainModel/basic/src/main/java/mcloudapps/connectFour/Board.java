@@ -3,7 +3,7 @@ package mcloudapps.connectFour;
 import java.util.HashMap;
 import java.util.Map;
 
-import mcloudapps.utils.Cell;
+import mcloudapps.utils.Coordinate;
 import mcloudapps.utils.Direction;
 
 public class Board {
@@ -11,8 +11,8 @@ public class Board {
     public static final int NCOLS = 7;
     public static final int NROWS = 6;
 
-    public Map<Cell, Color> cells;
-    public Cell lastCell;
+    public Map<Coordinate, Color> cells;
+    public Coordinate lastCoordinate;
 
     public Board() {
         this.cells = new HashMap<>();
@@ -21,7 +21,7 @@ public class Board {
 
     public void reset() {
         this.cells.clear();
-        this.lastCell = null;
+        this.lastCoordinate = null;
     }
 
     public void putToken(int column, Color color) {
@@ -29,13 +29,13 @@ public class Board {
         assert this.isColumnValid(column);
         assert this.isColumnFull(column);
         int row = 1;
-        Cell cell = new Cell(row, column);
-        while (row <= Board.NROWS && this.cells.containsKey(cell)) {
-            cell.shift(Direction.NORTH);
+        Coordinate coordinate = new Coordinate(row, column);
+        while (row <= Board.NROWS && this.cells.containsKey(coordinate)) {
+            coordinate.shift(Direction.NORTH);
             row++;
         }
-        this.cells.put(cell, color);
-        this.lastCell = cell;
+        this.cells.put(coordinate, color);
+        this.lastCoordinate = coordinate;
     }
 
     public boolean isColumnValid(int column) {
@@ -43,7 +43,7 @@ public class Board {
     }
 
     public boolean isColumnFull(int column) {
-        return this.cells.containsKey(new Cell(NROWS, column));
+        return this.cells.containsKey(new Coordinate(NROWS, column));
     }
 
     public boolean isBoardFull(){
@@ -61,9 +61,9 @@ public class Board {
         for (int row = Board.NROWS; row >= 1 ; row--) {
             Message.VERTICAL_LINE.write();
             for (int col = 1; col <= Board.NCOLS; col++) {
-                Cell cell = new Cell(row, col);
-                if (this.cells.containsKey(cell)) {
-                    Message.COLOR.writeColor(this.cells.get(cell).toString());
+                Coordinate coordinate = new Coordinate(row, col);
+                if (this.cells.containsKey(coordinate)) {
+                    Message.COLOR.writeColor(this.cells.get(coordinate).toString());
                 } else {
                     Message.EMPTY.write();
                 }

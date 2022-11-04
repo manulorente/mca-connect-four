@@ -1,4 +1,4 @@
-package mcloudapps.utils;
+package mcloudapps.utils.models;
 
 public class Coordinate {
 
@@ -18,15 +18,15 @@ public class Coordinate {
 		return this.column;
 	}
 
+    public boolean isNull() {
+		return false;
+	}
+    
     public void shift(Direction direction) {
         this.row += direction.directionRow;
         this.column += direction.directionColumn;
     }
 
-    public boolean isNull() {
-		return false;
-	}
-    
     @Override
     public int hashCode() {
         final int prime = 31;

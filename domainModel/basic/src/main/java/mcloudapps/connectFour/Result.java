@@ -1,6 +1,6 @@
 package mcloudapps.connectFour;
 
-import mcloudapps.utils.Cell;
+import mcloudapps.utils.Coordinate;
 import mcloudapps.utils.Direction;
 
 public class Result {
@@ -15,28 +15,28 @@ public class Result {
 
     public Color getResult() {
         for (Direction direction : Direction.halfValues()) {
-            if (this.checkLine(this.board.lastCell, direction)) {
-                return this.board.cells.get(this.board.lastCell);
+            if (this.checkLine(this.board.lastCoordinate, direction)) {
+                return this.board.cells.get(this.board.lastCoordinate);
             }
         }
         return null;
     }   
 
-    private boolean checkLine(Cell cell, Direction direction) {
-        assert cell != null;
+    private boolean checkLine(Coordinate coordinate, Direction direction) {
+        assert coordinate != null;
         assert direction != null;
-        if (isLine(cell, direction) || isLine(cell, direction.reverse())) {
+        if (isLine(coordinate, direction) || isLine(coordinate, direction.reverse())) {
             return true;
         }
         return false;
     }
 
-    private boolean isLine(Cell originCell, Direction direction) {
+    private boolean isLine(Coordinate originCoordinate, Direction direction) {
         int inLineTokenCounter = 1;
-        Cell nextCell = (Cell) originCell.clone();
+        Coordinate nextCoordinate = (Coordinate) originCoordinate.clone();
         while (inLineTokenCounter < this.line_length){
-            nextCell.shift(direction);               
-            if (this.board.cells.containsKey(nextCell) && this.board.cells.get(nextCell).equals(this.board.cells.get(originCell))) {
+            nextCoordinate.shift(direction);               
+            if (this.board.cells.containsKey(nextCoordinate) && this.board.cells.get(nextCoordinate).equals(this.board.cells.get(originCoordinate))) {
                 inLineTokenCounter++;
             } else {
                 break;

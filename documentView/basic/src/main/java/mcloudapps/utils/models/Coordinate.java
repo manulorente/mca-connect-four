@@ -1,14 +1,27 @@
-package mcloudapps.utils;
+package mcloudapps.utils.models;
 
-public class Cell {
+public class Coordinate {
 
-    int row, column;
+    protected int row;
+	protected int column;
 
-    public Cell(int row, int column) {
+    public Coordinate(int row, int column) {
         this.row = row;
         this.column = column;
     }
 
+    public int getRow() {
+		return this.row;
+	}
+
+	public int getColumn() {
+		return this.column;
+	}
+
+    public boolean isNull() {
+		return false;
+	}
+    
     public void shift(Direction direction) {
         this.row += direction.directionRow;
         this.column += direction.directionColumn;
@@ -31,12 +44,12 @@ public class Cell {
             return false;
         if (this.getClass() != obj.getClass())
             return false;
-        Cell other = (Cell) obj;
+        Coordinate other = (Coordinate) obj;
         return this.row == other.row && this.column == other.column;
     }
 
     @Override
     public Object clone(){
-        return new Cell(this.row, this.column);
+        return new Coordinate(this.row, this.column);
     }
 }
