@@ -1,4 +1,4 @@
-package mcloudapps.connectFour;
+package mcloudapps.utils;
 
 public class Coordinate {
 

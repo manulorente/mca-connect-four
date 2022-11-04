@@ -3,6 +3,7 @@ package mcloudapps.connectFour;
 import java.util.HashMap;
 import java.util.Map;
 
+import mcloudapps.utils.Cell;
 import mcloudapps.utils.Direction;
 
 public class Board {

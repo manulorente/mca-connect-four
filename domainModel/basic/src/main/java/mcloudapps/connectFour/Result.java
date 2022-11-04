@@ -1,5 +1,6 @@
 package mcloudapps.connectFour;
 
+import mcloudapps.utils.Cell;
 import mcloudapps.utils.Direction;
 
 public class Result {
@@ -14,32 +15,28 @@ public class Result {
 
     public Color getResult() {
         for (Direction direction : Direction.halfValues()) {
-            if (this.isLine(this.board.lastCell, direction)) {
+            if (this.checkLine(this.board.lastCell, direction)) {
                 return this.board.cells.get(this.board.lastCell);
             }
         }
         return null;
     }   
 
-    private boolean isLine(Cell cell, Direction direction) {
+    private boolean checkLine(Cell cell, Direction direction) {
         assert cell != null;
         assert direction != null;
-        int inLineTokenCounter = 1;
-        Cell nextCell = (Cell) cell.clone();
-        Cell originCell = (Cell) cell.clone();
-        while (inLineTokenCounter < this.line_length){
-            nextCell.shift(direction);               
-            if (this.board.cells.containsKey(nextCell) && this.board.cells.get(nextCell).equals(this.board.cells.get(cell))) {
-                inLineTokenCounter++;
-            } else {
-                break;
-            }
+        if (isLine(cell, direction) || isLine(cell, direction.reverse())) {
+            return true;
         }
-        direction = direction.reverse();
-        nextCell = originCell;
+        return false;
+    }
+
+    private boolean isLine(Cell originCell, Direction direction) {
+        int inLineTokenCounter = 1;
+        Cell nextCell = (Cell) originCell.clone();
         while (inLineTokenCounter < this.line_length){
             nextCell.shift(direction);               
-            if (this.board.cells.containsKey(nextCell) && this.board.cells.get(nextCell).equals(this.board.cells.get(cell))) {
+            if (this.board.cells.containsKey(nextCell) && this.board.cells.get(nextCell).equals(this.board.cells.get(originCell))) {
                 inLineTokenCounter++;
             } else {
                 break;

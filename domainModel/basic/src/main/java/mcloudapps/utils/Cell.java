@@ -1,6 +1,4 @@
-package mcloudapps.connectFour;
-
-import mcloudapps.utils.Direction;
+package mcloudapps.utils;
 
 public class Cell {
 
