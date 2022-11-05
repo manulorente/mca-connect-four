@@ -14,20 +14,16 @@ Juan Ángel Garrido Lupiañez
 2. documentView. Versiones realizadas:  
 
     * basic  
-    * withoutFactoryMethod  
     * withFactoryMethod  
 
 3. modelViewPresenter. Versiones realizadas:  
-    * passiveView
-        * basic
     * presentationModel
         * basic
         * withFacade
-        * withoutDoubleDispatching
         * withDoubleDispatching
         * withComposite
-        * withoutDAO
-        * withDAO
+    * passiveView
+        * basic  
 
 ## Autoevaluación Diseño y Calidad de Software (8.5p)  
 
