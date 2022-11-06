@@ -14,6 +14,10 @@ public class PlayController extends Controller implements AcceptorController{
         this.session.nextState();
     }
 
+    public void next() {
+        this.session.next();
+    }
+
     public Color getResult(){
         return this.session.getResult();
     }

@@ -24,6 +24,10 @@ public class Session {
     }
 
     public void nextState() {
+        this.state.next();
+    }
+
+    public void next() {
         this.game.next();
     }
 
