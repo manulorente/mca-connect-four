@@ -1,22 +1,21 @@
 package mcloudapps.connectFour.views.console;
 
-import mcloudapps.connectFour.controllers.PlayController;
+import mcloudapps.connectFour.controllers.Logic;
+import mcloudapps.connectFour.views.WithLogicView;
 
-public class PlayView{
+public class PlayView extends WithLogicView {
     
-    private PlayController playController;
-
-    public PlayView(PlayController playController) {
-        this.playController = playController;
+    public PlayView(Logic logic) {
+        super(logic);
     }
     
     public void interact() {
         do {
-            new PlayerView(this.playController).interact();
-            this.playController.next();
-            new BoardView().write(this.playController);
-        } while (!this.playController.isGameOver());
-        new ResultView(this.playController).interact();
+            new PlayerView(this.logic).interact();
+            this.logic.next();
+            new BoardView().write(this.logic);
+        } while (!this.logic.isGameOver());
+        new ResultView(this.logic).interact();
     }
     
 }

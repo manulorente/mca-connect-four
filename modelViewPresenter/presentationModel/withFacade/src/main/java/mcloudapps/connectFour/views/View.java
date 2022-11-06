@@ -1,19 +1,11 @@
 package mcloudapps.connectFour.views;
 
-import mcloudapps.connectFour.controllers.PlayController;
-import mcloudapps.connectFour.controllers.ResumeController;
-import mcloudapps.connectFour.controllers.StartController;
+import mcloudapps.connectFour.controllers.Logic;
 
-public abstract class View {
-    
-    protected StartController startController;
-    protected PlayController playController;
-    protected ResumeController resumeController;
+public abstract class View extends WithLogicView {
 
-    public View(StartController startController, PlayController playController, ResumeController resumeController) {
-        this.startController = startController;
-        this.playController = playController;
-        this.resumeController = resumeController;
+    public View(Logic logic) {
+        super(logic);
     }
 
     public abstract void start();

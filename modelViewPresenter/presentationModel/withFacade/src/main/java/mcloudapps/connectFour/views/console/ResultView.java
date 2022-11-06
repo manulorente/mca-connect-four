@@ -1,21 +1,20 @@
 package mcloudapps.connectFour.views.console;
 
-import mcloudapps.connectFour.controllers.PlayController;
+import mcloudapps.connectFour.controllers.Logic;
 import mcloudapps.connectFour.views.Message;
+import mcloudapps.connectFour.views.WithLogicView;
 
-public class ResultView{
+public class ResultView extends WithLogicView {
    
-    private PlayController playController;
-
-    public ResultView(PlayController playController) {
-        this.playController = playController;
+    public ResultView(Logic logic) {
+        super(logic);
     }
     
     public void interact() {
-        if (playController.getResult() == null) {
+        if (this.logic.getResult() == null) {
             new MessageView().writeln(Message.RESULT_DRAW);
         } else {
-            new MessageView().writeWinner(playController.getResult().toString());
+            new MessageView().writeWinner(this.logic.getResult().toString());
         }
         new MessageView().writeln(Message.HORIZONTAL_LINE);
     }

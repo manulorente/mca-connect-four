@@ -1,22 +1,21 @@
 package mcloudapps.connectFour.views.console;
 
-import mcloudapps.connectFour.controllers.ResumeController;
+import mcloudapps.connectFour.controllers.Logic;
 import mcloudapps.connectFour.views.Message;
+import mcloudapps.connectFour.views.WithLogicView;
 import mcloudapps.utils.views.YesNoDialog;
 
-public class ResumeView{
+public class ResumeView extends WithLogicView {
 
-    private ResumeController resumeController;
-
-    public ResumeView(ResumeController resumeController) {
-        this.resumeController = resumeController;
+    public ResumeView(Logic logic) {
+        super(logic);
     }
 
     public boolean interact() {
         YesNoDialog isResumed = new YesNoDialog();
         isResumed.read(Message.RESUME.toString());
         if (isResumed.isAffirmative()) {
-            this.resumeController.reset();
+            this.logic.reset();
         }
         return isResumed.isAffirmative();    }
 

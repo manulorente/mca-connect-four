@@ -3,6 +3,7 @@ package mcloudapps.connectFour.controllers;
 import mcloudapps.connectFour.models.Game;
 import mcloudapps.connectFour.types.Color;
 import mcloudapps.connectFour.types.Error;
+import mcloudapps.utils.models.Coordinate;
 
 public class PlayController extends Controller {
 
@@ -24,6 +25,10 @@ public class PlayController extends Controller {
 
     public void next() {
         this.game.next();
+    }
+
+    public boolean isEmpty(Coordinate coordinate){
+        return this.game.isEmpty(coordinate);
     }
 
     public boolean isGameOver() {

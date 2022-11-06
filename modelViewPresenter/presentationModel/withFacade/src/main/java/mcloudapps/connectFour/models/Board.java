@@ -75,5 +75,20 @@ public class Board {
         assert coordinate != null;
         return this.cells.get(coordinate);
     }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == null) {
+            return false;
+        }
+        if (object == this) {
+            return true;
+        }
+        if (object.getClass() != this.getClass()) {
+            return false;
+        }
+        Board board = (Board) object;
+        return this.cells.equals(board.cells);
+    }
   
 }

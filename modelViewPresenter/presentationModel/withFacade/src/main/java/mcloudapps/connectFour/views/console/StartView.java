@@ -1,19 +1,18 @@
 package mcloudapps.connectFour.views.console;
 
-import mcloudapps.connectFour.controllers.StartController;
+import mcloudapps.connectFour.controllers.Logic;
 import mcloudapps.connectFour.views.Message;
+import mcloudapps.connectFour.views.WithLogicView;
 
-public class StartView {
+public class StartView extends WithLogicView {
     
-    private StartController startController;
-
-    StartView(StartController startController) {
-        this.startController = startController;
+    StartView(Logic logic) {
+        super(logic);
     }
     
     public void interact() {
         new MessageView().writeln(Message.TITLE);
-        new BoardView().write(this.startController);
+        new BoardView().write(this.logic);
     }
 }
 

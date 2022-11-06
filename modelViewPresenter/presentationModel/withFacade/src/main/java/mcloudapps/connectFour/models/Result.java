@@ -51,4 +51,14 @@ public class Result {
         return this.getResult() != null || this.board.isBoardFull();
     }
 
+    @Override
+    public boolean equals(Object object) {
+        boolean result = false;
+        if (object instanceof Result) {
+            Result result2 = (Result) object;
+            result = this.board.equals(result2.board);
+        }
+        return result;
+    }
+
 }

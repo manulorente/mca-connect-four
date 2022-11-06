@@ -47,4 +47,14 @@ public class Turn {
         return this.getActivePlayer().getPutTokenError(columnIndex);
     }
 
+    @Override
+    public boolean equals(Object object) {
+        boolean result = false;
+        if (object instanceof Turn) {
+            Turn turn = (Turn) object;
+            result = this.board.equals(turn.board);
+        }
+        return result;
+    }
+
 }

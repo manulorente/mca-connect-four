@@ -61,4 +61,19 @@ public class Game {
         return this.result.getResult();
     }
 
+    @Override
+    public boolean equals(Object object) {
+        if (object == null) {
+            return false;
+        }
+        if (this == object) {
+            return true;
+        }
+        if (this.getClass() != object.getClass()) {
+            return false;
+        }
+        Game game = (Game) object;
+        return this.board.equals(game.board) && this.turn.equals(game.turn) && this.result.equals(game.result);
+    }
+
 }

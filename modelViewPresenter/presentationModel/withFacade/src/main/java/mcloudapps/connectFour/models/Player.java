@@ -34,4 +34,14 @@ public class Player {
         return this.color;
     }    
 
+    @Override
+    public boolean equals(Object object) {
+        boolean result = false;
+        if (object instanceof Player) {
+            Player player = (Player) object;
+            result = this.color == player.color;
+        }
+        return result;
+    }
+
 }

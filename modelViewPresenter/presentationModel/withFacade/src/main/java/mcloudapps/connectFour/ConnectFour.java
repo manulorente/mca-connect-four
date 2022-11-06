@@ -1,28 +1,20 @@
 package mcloudapps.connectFour;
 
-import mcloudapps.connectFour.controllers.PlayController;
-import mcloudapps.connectFour.controllers.ResumeController;
-import mcloudapps.connectFour.controllers.StartController;
+import mcloudapps.connectFour.controllers.Logic;
 import mcloudapps.connectFour.models.Game;
 import mcloudapps.connectFour.views.View;
 
 public abstract class ConnectFour 
 {
-    private Game game;
     private View view;
-    protected StartController startController;
-    protected PlayController playController;
-    protected ResumeController resumeController;    
+    private Logic logic;
 
     public ConnectFour() {
-        this.game = new Game();
-        this.startController = new StartController(this.game);
-        this.playController = new PlayController(this.game);
-        this.resumeController = new ResumeController(this.game);
-        this.view = this.createView();
+        this.logic = new Logic(new Game());
+        this.view = this.createView(this.logic);
     }
 
-    protected abstract View createView();
+    protected abstract View createView(Logic logic);
 
     protected void play() {
         do {
