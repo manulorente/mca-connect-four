@@ -14,10 +14,10 @@ public class Result {
         this.board = board;
     }
 
-    public Color getResult() {
+	public Color getResult() {
         for (Direction direction : Direction.halfValues()) {
             if (this.checkLine(this.board.lastCoordinate, direction)) {
-                return this.board.cells.get(this.board.lastCoordinate);
+                return this.board.getCoordinate(this.board.lastCoordinate);
             }
         }
         return null;
@@ -35,9 +35,11 @@ public class Result {
     private boolean isLine(Coordinate originCoordinate, Direction direction) {
         int inLineTokenCounter = 1;
         Coordinate nextCoordinate = (Coordinate) originCoordinate.clone();
+        Color originColor = this.board.getCoordinate(originCoordinate);
         while (inLineTokenCounter < this.line_length){
-            nextCoordinate.shift(direction);               
-            if (this.board.cells.containsKey(nextCoordinate) && this.board.cells.get(nextCoordinate).equals(this.board.cells.get(originCoordinate))) {
+            nextCoordinate.shift(direction); 
+            Color nextColor = this.board.getCoordinate(nextCoordinate);
+            if (nextColor != null && nextColor.equals(originColor)) {
                 inLineTokenCounter++;
             } else {
                 break;

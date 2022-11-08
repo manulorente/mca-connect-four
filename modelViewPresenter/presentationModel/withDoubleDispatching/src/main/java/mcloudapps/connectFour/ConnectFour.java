@@ -12,7 +12,7 @@ public abstract class ConnectFour
 
     public ConnectFour() {
         this.logic = new Logic();
-       this.view = this.createView();
+        this.view = this.createView();
     }
 
     protected abstract View createView();
