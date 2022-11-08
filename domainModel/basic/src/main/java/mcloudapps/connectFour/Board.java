@@ -38,6 +38,11 @@ public class Board {
         this.lastCoordinate = coordinate;
     }
 
+    public Color getCoordinate(Coordinate coordinate){
+        assert coordinate != null;
+        return this.cells.containsKey(coordinate) ? this.cells.get(coordinate) : null;
+    }
+
     public boolean isColumnValid(int column) {
         return column >= 1 && column <= Board.NCOLS;
     }
