@@ -8,15 +8,18 @@ public class Session {
 
     private State state;
     private Game game;
+    private Registry registry;
 
     public Session() {
         this.game = new Game();
         this.state = new State();
+        this.registry = new Registry(this.game);
     }
 
     public void reset(){
         this.game.reset();
         this.state.reset();
+        this.registry.reset();
     }
 
     public StateValue getValueState() {
@@ -27,8 +30,25 @@ public class Session {
         this.state.next();
     }
 
+    public boolean undoable() {
+        return this.registry.isUndoable();
+    }
+
+    public boolean redoable() {
+        return this.registry.isRedoable();
+    }
+
+    public void undo() {
+        this.registry.undo();
+    }
+
+    public void redo() {
+        this.registry.redo();
+    }
+
     public void next() {
         this.game.next();
+        this.registry.register();
     }
 
     public int getNumberOfRows() {

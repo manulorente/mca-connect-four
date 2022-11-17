@@ -17,8 +17,12 @@ public class Board {
     public Coordinate lastCoordinate;
 
     public Board() {
-        this.cells = new HashMap<>();
+        this.cells = new HashMap<Coordinate, Color>();
         this.reset();
+    }
+    
+    public Board(Map<Coordinate, Color> cells) {
+        this.cells = cells;
     }
 
     public void reset() {
@@ -81,4 +85,9 @@ public class Board {
         return this.cells.get(coordinate);
     }
   
+    @Override
+    public Object clone(){
+        return new Board(this.cells);
+    }
+
 }

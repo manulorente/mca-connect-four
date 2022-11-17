@@ -6,9 +6,7 @@ public class PlayView{
     
     public void interact(PlayController playController) {
         do {
-            new PlayerView(playController).interact();
-            playController.next();
-            new BoardView().write(playController);
+            new PlayMenu(playController).execute();
         } while (!playController.isGameOver());
         new ResultView(playController).interact();
         playController.nextState();
