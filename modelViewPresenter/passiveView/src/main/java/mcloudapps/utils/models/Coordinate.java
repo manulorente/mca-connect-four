@@ -27,6 +27,10 @@ public class Coordinate {
         this.column += direction.directionColumn;
     }
 
+    public boolean isValid(int row, int column) {
+        return row > 0 && column > 0;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;

@@ -37,7 +37,7 @@ public class Board {
     public void putToken(int column, Color color) {
         assert color != null;
         assert this.isColumnValid(column);
-        assert this.isColumnFull(column);
+        assert !this.isColumnFull(column);
         int row = 1;
         Coordinate coordinate = new Coordinate(row, column);
         while (row <= Board.NROWS && this.cells.containsKey(coordinate)) {
@@ -62,7 +62,7 @@ public class Board {
     }
 
     public boolean isBoardFull(){
-        int full_columns = 1;
+        int full_columns = 0;
         for (int column = 1 ; column <= Board.NCOLS ; column++){
             if (this.isColumnFull(column)){
                 full_columns++;
@@ -74,11 +74,6 @@ public class Board {
     public boolean isEmpty(Coordinate coordinate) {
         assert coordinate != null;
         return !this.cells.containsKey(coordinate);
-    }
-
-    public Color getColor(Coordinate coordinate) {
-        assert coordinate != null;
-        return this.cells.get(coordinate);
     }
   
 }

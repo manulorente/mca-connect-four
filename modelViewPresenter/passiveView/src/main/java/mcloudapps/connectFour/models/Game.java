@@ -42,7 +42,7 @@ public class Game {
     }
 
     public Color getColor(Coordinate coordinate) {
-        return this.board.getColor(coordinate);
+        return this.board.getCoordinate(coordinate);
     }
 
     public void putToken(int column, Color color) {

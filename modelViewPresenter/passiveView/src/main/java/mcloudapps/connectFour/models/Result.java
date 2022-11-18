@@ -23,7 +23,7 @@ public class Result {
         return null;
     }   
 
-    private boolean checkLine(Coordinate coordinate, Direction direction) {
+    public boolean checkLine(Coordinate coordinate, Direction direction) {
         assert coordinate != null;
         assert direction != null;
         if (isLine(coordinate, direction) || isLine(coordinate, direction.reverse())) {
@@ -32,7 +32,7 @@ public class Result {
         return false;
     }
 
-    private boolean isLine(Coordinate originCoordinate, Direction direction) {
+    public boolean isLine(Coordinate originCoordinate, Direction direction) {
         int inLineTokenCounter = 1;
         Coordinate nextCoordinate = (Coordinate) originCoordinate.clone();
         Color originColor = this.board.getCoordinate(originCoordinate);
