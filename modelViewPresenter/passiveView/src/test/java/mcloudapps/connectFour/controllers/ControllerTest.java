@@ -73,7 +73,7 @@ public abstract class ControllerTest {
             case 'Y':
                 return Color.Y;
             default:
-                return Color.NONE;
+                return null;
         }
     }
 

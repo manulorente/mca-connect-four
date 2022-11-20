@@ -3,6 +3,7 @@ package mcloudapps.connectFour.views;
 import java.util.HashMap;
 import java.util.Map;
 
+import mcloudapps.connectFour.models.Board;
 import mcloudapps.connectFour.types.Color;
 import mcloudapps.utils.models.Coordinate;
 
@@ -15,8 +16,7 @@ public abstract class BoardView {
     }
 
     public void set(Coordinate coordinate, Color color) {
-        assert coordinate != null;
-        assert color != null;
+        assert this.cells.size() < (Board.getNumberOfRows() * Board.getNumberOfColumns());
         this.cells.put(coordinate, color);
     }
 

@@ -42,12 +42,10 @@ public class StartControllerTest extends ControllerTest {
                         "       " +
                         "       " +
                         "       ";
-
         ArgumentCaptor<Color> argumentCaptor = ArgumentCaptor.forClass(Color.class);
         ArgumentCaptor<Coordinate> argumentCaptorCoordinate = ArgumentCaptor.forClass(Coordinate.class);
         verify(this.boardView, atLeastOnce()).set(argumentCaptorCoordinate.capture(), argumentCaptor.capture());
         assertThat(argumentCaptor.getAllValues(), is(this.stringToColors(board)));
         verify(this.boardView).write();
     }
-
 }

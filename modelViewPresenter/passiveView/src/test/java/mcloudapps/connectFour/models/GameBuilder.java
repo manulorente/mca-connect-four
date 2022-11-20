@@ -38,7 +38,6 @@ public class GameBuilder {
     }
 
     private void buildBoard() {
-        //Board board = new BoardBuilder().rows(this.rows).build();
         this.putTokens(Color.R);
         this.game.next();
         this.putTokens(Color.Y);

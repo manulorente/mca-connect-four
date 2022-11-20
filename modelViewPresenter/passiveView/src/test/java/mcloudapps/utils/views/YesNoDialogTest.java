@@ -29,7 +29,6 @@ public class YesNoDialogTest {
     public void testGivenYesNoDialogWhenReadThenIsAffirmative() {
         try (MockedStatic<Console> console = mockStatic(Console.class)) {
             console.when(Console::getInstance).thenReturn(this.console);
-
             final String[] YES = new String[]{"y", "Y"};
             for (int i = 0; i < YES.length; i++) {
                 when(this.console.readString("? (y/n): ")).thenReturn(YES[i]);
@@ -43,7 +42,6 @@ public class YesNoDialogTest {
     public void testGivenYesNoDialogWhenReadThenIsNegative() {
         try (MockedStatic<Console> console = mockStatic(Console.class)) {
             console.when(Console::getInstance).thenReturn(this.console);
-
             final String[] NO = new String[]{"n", "N"};
             for (int i = 0; i < NO.length; i++) {
                 when(this.console.readString("? (y/n): ")).thenReturn(NO[i]);
@@ -57,7 +55,6 @@ public class YesNoDialogTest {
     public void testGivenYesNoDialogWhenReadThenRepeatWithError() {
         try (MockedStatic<Console> console = mockStatic(Console.class)) {
             console.when(Console::getInstance).thenReturn(this.console);
-
             when(this.console.readString("? (y/n): ")).thenReturn(" ", "1", "s", "*", "y");
             this.yesNoDialog.read(this.title);
             verify(this.console, times(4)).writeln("The value must be 'y' or 'n'");
