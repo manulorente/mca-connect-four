@@ -30,6 +30,10 @@ public class Turn {
     public Player getActivePlayer() {
         return this.players.get(this.activePlayer);
     }
+
+    public int getActivePlayerOrdinal() {
+        return this.activePlayer;
+    }
     
     private int randomTurn() {
         return (int) (Math.random() * Turn.NUMBER_PLAYERS);

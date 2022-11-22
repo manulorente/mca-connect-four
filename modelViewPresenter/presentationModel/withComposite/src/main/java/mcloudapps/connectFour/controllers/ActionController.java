@@ -1,6 +1,7 @@
 package mcloudapps.connectFour.controllers;
 
 import mcloudapps.connectFour.models.Session;
+import mcloudapps.connectFour.types.Color;
 import mcloudapps.connectFour.types.Error;
 
 public class ActionController extends Controller{
@@ -10,6 +11,10 @@ public class ActionController extends Controller{
     }
 
     public void next() {
+        this.session.next();
+    }
+
+    public void nextState() {
         this.session.nextState();
     }
 
@@ -19,6 +24,18 @@ public class ActionController extends Controller{
 
     public Error getPutTokenError(int column) {
         return this.session.getPutTokenError(column);
+    }
+
+    public Color getResult(){
+        return this.session.getResult();
+    }
+
+    public Color getActivePlayerColor(){
+        return this.session.getActivePlayerColor();
+    }
+
+    public boolean isGameOver() {
+        return this.session.isGameOver();
     }
 
 }

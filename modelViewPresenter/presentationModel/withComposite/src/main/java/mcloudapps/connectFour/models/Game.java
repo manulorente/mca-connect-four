@@ -37,6 +37,10 @@ public class Game {
         return this.turn.getActivePlayer().getColor();
     }
 
+    public int getActivePlayer() {
+        return this.turn.getActivePlayerOrdinal();
+    }
+
     public boolean isEmpty(Coordinate coordinate) {
         return this.board.isEmpty(coordinate);
     }
@@ -59,6 +63,16 @@ public class Game {
 
     public Color getResult() {
         return this.result.getResult();
+    }
+
+    public Board getBoard() {
+        return (Board) this.board.clone();
+    }
+
+    public void setMemento(Memento memento) {
+        this.board = memento.getBoard();
+        this.turn = new Turn(this.board);
+        this.result = new Result(this.board);
     }
 
 }
