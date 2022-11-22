@@ -58,14 +58,16 @@ public class BoardViewTest {
         }
     }
 
-    private void addColors(){
+    private void addColors(){    
+        this.boardView.set(new Coordinate(1, 1), Color.R);
+        this.boardView.set(new Coordinate(1, 2), Color.Y);           
         for (int i = 1; i <= Board.getNumberOfRows(); i++) {
             for (int j = 1; j <= Board.getNumberOfColumns(); j++) {
+                if (i != 1 && j > 2) {
                     this.boardView.set(new Coordinate(i, j), Color.NONE);
-            }
-        }  
-        this.boardView.set(new Coordinate(1, 1), Color.R);
-        this.boardView.set(new Coordinate(1, 2), Color.Y);        
+                }
+            }   
+        }             
     }
 
     private String getExpectedBoard() {

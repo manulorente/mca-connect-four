@@ -44,10 +44,10 @@ public class GameBuilder {
     }
 
     private void putTokens(Color color) {
-        for (int i = this.rows.length-1; i >= 0; i--) {
-            String string = this.rows[i];
-            for (int j = 0; j < string.length(); j++) {
-                if(Character.toString(string.charAt(j)).equals(color.name())) {
+        for (int i = this.rows.length; i > 0; i--) {
+            String string = this.rows[i-1];
+            for (int j = 1; j < string.length(); j++) {
+                if(Character.toString(string.charAt(j-1)).equals(color.name())) {
                     this.game.putToken(j, color);
                 }
             }

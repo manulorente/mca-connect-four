@@ -42,9 +42,9 @@ public abstract class ControllerTest {
                 "       ",
                 "RY     ");
         this.controller.writeBoard();
-        ArgumentCaptor<Color> argumentCaptor = ArgumentCaptor.forClass(Color.class);
+        ArgumentCaptor<Color> argumentCaptorColor = ArgumentCaptor.forClass(Color.class);
         ArgumentCaptor<Coordinate> argumentCaptorCoordinate = ArgumentCaptor.forClass(Coordinate.class);
-        verify(this.boardView, atLeastOnce()).set(argumentCaptorCoordinate.capture(), argumentCaptor.capture());
+        verify(this.boardView, atLeastOnce()).set(argumentCaptorCoordinate.capture(), argumentCaptorColor.capture());
         String board =
                 "RY     " +
                 "       " +
@@ -52,7 +52,7 @@ public abstract class ControllerTest {
                 "       " +
                 "       " +
                 "       ";
-        assertThat(argumentCaptor.getAllValues(), is(this.stringToColors(board)));
+        assertThat(this.reorder(argumentCaptorColor.getAllValues()), is(this.stringToColors(board)));
         verify(this.boardView).write();
     }
 
@@ -75,6 +75,20 @@ public abstract class ControllerTest {
             default:
                 return null;
         }
+    }
+
+    private List<Color> reorder(List<Color> colors) {
+        List<Color> reordered = new ArrayList<>(colors.size());
+        for (int i = 0; i < colors.size(); i++) {
+            if (i >= colors.size() - 8) {
+                reordered.add(colors.get(i));
+            } else {
+                reordered.add(colors.get(i + 8));
+            }
+        }
+        colors.clear();
+        colors.addAll(reordered);
+        return colors;
     }
 
 }

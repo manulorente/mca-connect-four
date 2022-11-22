@@ -31,9 +31,6 @@ public class ResultViewTest {
             this.resultView.writeWinner(Color.R);
             verify(this.console).writeln("R player: You win!!! :-)");
             verify(this.console).writeln("------------------------------");
-            this.resultView.writeWinner(Color.Y);
-            verify(this.console).writeln("Y player: You win!!! :-)");
-            verify(this.console).writeln("------------------------------");            
         }
     }
 

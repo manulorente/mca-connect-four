@@ -22,7 +22,7 @@ import static org.mockito.Mockito.when;
 public class PlayControllerTest extends ControllerTest {
 
     @Mock
-    private PlayerView playerview;
+    private PlayerView playerView;
 
     @Mock
     private ResultView resultView;
@@ -40,7 +40,7 @@ public class PlayControllerTest extends ControllerTest {
 
     private void setupMocks() {
         when(this.viewFactory.createBoardView()).thenReturn(this.boardView);
-        when(this.viewFactory.createPlayerView()).thenReturn(this.playerview);
+        when(this.viewFactory.createPlayerView()).thenReturn(this.playerView);
         when(this.viewFactory.createResultView()).thenReturn(this.resultView);
         when(this.viewFactory.createErrorView()).thenReturn(this.errorView);
     }
@@ -53,10 +53,10 @@ public class PlayControllerTest extends ControllerTest {
             "       ",
             "       ",
             "       ",
-            "       ",
-            "       ");
-        int column = 5;
-        when(this.playerview.readColumn(any())).thenReturn(column);
+            "R      ",
+            "YYY    ");
+        int column = 4;
+        when(this.playerView.readColumn(any())).thenReturn(column);
         ((PlayController) this.controller).control();
         verify(this.game).putToken(column, Color.Y);
         verify(this.resultView).writeWinner(Color.Y);
@@ -72,10 +72,27 @@ public class PlayControllerTest extends ControllerTest {
                 "R      ",
                 "Y      ",
                 "RYYY   ");
-        int column = 0;
-        when(this.playerview.readColumn(any())).thenReturn(column, 5);
+        int column = 1;
+        when(this.playerView.readColumn(any())).thenReturn(column, 5);
         ((PlayController) this.controller).control();
         verify(this.errorView).writeln(Error.FULL_COLUMN);
     }
+
+    @Test
+    public void testGivenPlayControllerTieGameWhenControlThenIsDraw() {
+        this.setupMocks();
+        this.controller = this.getController(
+                "RRYRY R",
+                "YYRYRRY",
+                "RRRYYYR",
+                "YYRYYRY",
+                "RRYRRRY",
+                "YRRYYRY");
+        int column = 6;
+        when(this.playerView.readColumn(any())).thenReturn(column);
+        ((PlayController) this.controller).control();
+        verify(this.game).putToken(column, Color.Y);
+        verify(this.resultView).writeDraw();
+    }    
 
 }
