@@ -1,0 +1,47 @@
+@startuml PackagesDiagramAnalysis
+title Análisis de paquetes Connect4
+
+package connectFour #D0D0D0 {
+package controllers #D0D0D0 {
+}
+package types #D0D0D0 {
+}
+package views #D0D0D0 {
+package console #D0D0D0 {
+}
+}
+package models #D0D0D0 {
+}
+}
+package utils #D0D0D0 {
+package util.models #D0D0D0 {
+}
+package util.views #D0D0D0 {
+}
+}
+
+views .down.> types
+views .down.> util.views
+views .down.> util.models
+models .down.> types
+models .down.> util.models
+controllers .down.> views
+controllers .down.> models
+controllers .down.> types
+
+connectFour.controllers.ActionController -down-|> connectFour.controllers.Controller
+connectFour.controllers.StartController -down-|> connectFour.controllers.Controller
+connectFour.controllers.PlayController -down-|> connectFour.controllers.Controller
+connectFour.controllers.ResumeController -down-|> connectFour.controllers.Controller
+connectFour.controllers.UndoController -down-|> connectFour.controllers.Controller
+connectFour.controllers.RedoController -down-|> connectFour.controllers.Controller
+connectFour.controllers.StartController .down.|> connectFour.controllers.ControllersVisitor
+connectFour.controllers.PlayController .down.|> connectFour.controllers.ControllersVisitor
+connectFour.controllers.ResumeController .down.|> connectFour.controllers.ControllersVisitor
+connectFour.controllers.Logic .down.> connectFour.controllers.StartController
+connectFour.controllers.Logic .down.> connectFour.controllers.PlayController
+connectFour.controllers.Logic .down.> connectFour.controllers.ResumeController
+connectFour.controllers.Logic -down-> connectFour.controllers.AcceptorController
+
+
+@enduml

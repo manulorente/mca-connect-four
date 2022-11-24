@@ -1,4 +1,4 @@
-@startuml C
+@startuml Versions
 
 title Secuencia versiones Connect4
 
@@ -15,7 +15,7 @@ state documentView {
     [*] --> dv.basic 
       state dv.basic #AF9EAF: Clases Vistas de Texto separadas\nde los Modelos del Dominio \nPara desacoplar los modelos\nde la consola.
     
-    dv.basic --> withFactoryMethod
+      dv.basic --> withFactoryMethod
       state withFactoryMethod #AF9EAF: Clase abstracta View para Open/Close de sus\ntecnologías.
       
     withFactoryMethod-->[*]
@@ -27,8 +27,10 @@ documentView --> modelViewPresenter
 
 state modelViewPresenter {
     [*] --> presentationModel
+    [*] --> passiveView
     presentationModel-->[*]
-
+    passiveView -->[*]
+    
     state presentationModel {
     [*] --> pm.basic
 
